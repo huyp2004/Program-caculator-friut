@@ -57,6 +57,6 @@ def caculator_buy(fruit_shop):
             else:  # Thối tiền
                 return f"Số tiền thối là {user_money - sum_money} VND"
     except ValueError:
-        return "sai ở đâu ấy ai biết"
+        return "Chương trình tính toán bị lỗi, bạn hãy nhập lại chương trình đúng theo yêu cầu"
 
 main()
