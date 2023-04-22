@@ -1,7 +1,11 @@
 # Quản lý và gọi các chức năng thực hiện mua hàng, tính toán
 def main():
-    fruit = shop()
-    print(caculator_buy(fruit))
+    while True:
+        fruit = shop()
+        print(caculator_buy(fruit))
+        if input("Bạn có muốn mua tiếp? Có/Không >").lower() == ["khong", "không", "k", "ko", "no", "n"]:
+            exit()
+
 
 # Thông tin của trái cây, giá tiền
 def shop():
@@ -25,7 +29,7 @@ def user_choose(fruit_shop):
         else:
             break
     kg = int(input("Bạn mua bao nhiêu kg > "))
-    
+
     return user, kg
 
 
@@ -33,8 +37,20 @@ def user_choose(fruit_shop):
 def caculator_buy(fruit_shop):
     choose, cost = user_choose(fruit_shop)
 
+    sum_money = fruit_shop[choose] * cost
+    print(f"Tổng {choose} có {cost}kg là: {sum_money}")
+
+    user_money = float(input("Khách đưa tiền > "))
+
     if choose in fruit_shop:
-        return fruit_shop[choose] * cost
+        sum_money = fruit_shop[choose] * cost
+
+        if user_money < sum_money:
+            return f"Số tiền còn thiếu: {user_money - sum_money} VND"
+        elif user_money == sum_money:
+            return "Số tiền đã đủ"
+        else:
+            return f"Số tiền thối là {user_money - sum_money} VND"
 
 
 main()
